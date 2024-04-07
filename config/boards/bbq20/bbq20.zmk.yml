@@ -1,0 +1,11 @@
+file_format: "1"
+id: bbq20
+name: bbq20
+type: board
+arch: arm
+features:
+  - keys
+outputs:
+  - usb
+  - ble
+url: https://github.com/ZitaoTech/BBQ20-USB_BLE_Keyboard

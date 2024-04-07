@@ -1,0 +1,98 @@
+/*
+ * Copyright (c) 2023 ZitaoTech
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/backlight.h>
+#include <dt-bindings/zmk/ext_power.h>
+
+
+#define SYM 1
+#define UPPER 2
+
+
+/ {
+    behaviors {
+        td0: tap_dance_0 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <400>;
+            bindings = <&mkp LCLK>, <&bt BT_CLR>;
+        };
+    };
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <500>;
+            bindings = <&out &kp>;
+        };
+    };
+
+    behaviors {
+        bhm: balanced_homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <400>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+
+            bindings = <
+//         --------------------------------------------------------------------------------------------------------------------------         
+//         |    Shoulder Key1    |                                                                             |    Shoulder Key2    |     
+// |         Call key      |      Blackberry Key        |    Trackpad    |             Back Key                |             Endcall Key          |
+// |     Q      |     W    |     E    |     R    |      T      |       Y        |       U        |        I        |       O      |      P        |     
+// |     A      |     S    |     D    |     F    |      G      |       H        |       J        |        K        |       L      |      ←        |  
+// |     alt    |     Z    |     X    |     C    |      V      |       B        |       N        |        M        |       $      |    Enter      |   
+//        |         aA     |         0           |           SPACE              |         SYM         |        aA          |       
+//        -----------------------------------------------------------------------------------------------------------------
+
+                 &mkp LCLK                                                                                             &mkp RCLK
+    &kp CLCK                &kp LGUI                            &mkp LCLK                          &mt ESC K_BACK                    &kp TAB
+    &bhm HASH Q  &bhm N1 W  &bhm N2 E  &bhm N3 R  &bhm LPAR T   &bhm RPAR Y        &bhm UNDER U    &bhm MINUS I        &bhm PLUS O   &bhm AT P
+    &bhm STAR A  &bhm N4 S  &bhm N5 D  &bhm N6 F  &bhm SLASH G  &bhm COLON H       &bhm SEMI J     &bhm APOS K         &bhm DQT L    &kp BSPC
+    &kp LSHFT    &bhm N7 Z  &bhm N8 X  &bhm N9 C  &bhm QMARK V  &bhm EXCL B        &bhm COMMA N    &bhm DOT M          &kp SEMI      &kp ENTER
+    &kp LCTRL               &kp LALT                            &kp SPACE                          &tog SYM                          &tog UPPER
+            >;
+        };
+
+
+        sym_layer {
+
+            bindings = <        
+                 &kp C_VOL_UP                                                                                       &kp C_VOL_DN
+    &kp PSCRN               &kp C_AC_SEARCH                     &mkp LCLK                          &kp F5                            &kp F12 
+    &kp HASH     &kp N1     &kp N2      &kp N3    &mt LBKT LPAR &mt RBKT RPAR     &kp UNDER        &kp MINUS        &kp PLUS         &kp AT
+    &kp STAR     &kp N4     &kp N5      &kp N6    &kp SLASH     &kp COLON         &kp SEMI         &kp APOS         &kp DQT          &kp DEL
+    &kp LSHFT    &kp N7     &kp N8      &kp N9    &kp QMARK     &kp EXCL          &kp COMMA        &kp DOT          &kp C_MUTE       &kp ENTER
+    &kp LCTRL               &kp N0                              &kp SPACE                          &tog SYM                          &tog UPPER
+            >;
+        };
+
+        upper_layer {
+
+            bindings = <
+                 &msc SCRL_UP                                                                                       &msc SCRL_DOWN
+    &bt BT_SEL 0            &bt BT_SEL 1                             &td0                           &bt BT_SEL 2                     &bt BT_SEL 3
+    &none        &kp UP     &none       &sys_reset &ext_power EP_TOG &none         &kp LT           &kp GT          &kp PIPE         &kp KP_EQUAL
+    &kp LEFT     &kp DOWN   &kp RIGHT   &none      &kp BSLH          &kp AMPS      &kp LBRC         &kp RBRC        &kp CARET        &kp BSPC
+    &kp LSHFT    &none      &none       &none      &bl BL_DEC        &bl BL_TOG    &bl BL_INC       &none           &bootloader      &kp ENTER
+    &kp LCTRL               &kp LALT                                 &hm OUT_TOG SPACE              &tog SYM                         &tog UPPER
+            >;
+        };
+    };
+};
+

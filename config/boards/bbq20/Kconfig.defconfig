@@ -1,0 +1,29 @@
+# Copyright (c) 2023 ZitaoTech
+# SPDX-License-Identifier: MIT
+
+if BOARD_BBQ20
+
+config ZMK_KEYBOARD_NAME
+    default "bbq20"
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+    default y
+
+endif # USB_DEVICE_STACK
+
+if ZMK_BACKLIGHT
+
+config PWM
+    default y
+
+config LED_PWM
+    default y
+
+endif # ZMK_BACKLIGHT
+
+config BT_CTLR
+    default BT
+
+endif # BOARD_BBQ20
