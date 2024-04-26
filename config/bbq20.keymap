@@ -16,9 +16,7 @@
 #define SYM 1
 #define UPPER 2
 
-&sk{
-    release-after-ms = <2500>;
-};
+
 
 / {
     behaviors {
@@ -57,7 +55,7 @@
     &kp CLCK                &kp LGUI                            &mkp LCLK                          &mt ESC K_BACK                    &kp TAB
     &kp Q        &kp W      &kp E       &kp R     &kp T         &kp Y             &kp U            &kp I            &kp O            &kp P
     &kp A        &kp S      &kp D       &kp F     &kp G         &kp H             &kp J            &kp K            &kp L            &kp BSPC
-    &sk LSHIFT   &kp Z      &kp X       &kp C     &kp V         &kp B             &kp N            &kp M            &kp SEMI         &kp ENTER
+    &kp LSHFT    &kp Z      &kp X       &kp C     &kp V         &kp B             &kp N            &kp M            &kp SEMI         &kp ENTER
     &kp LCTRL               &kp LALT                            &kp SPACE                          &tog SYM                          &tog UPPER
             >;
         };
